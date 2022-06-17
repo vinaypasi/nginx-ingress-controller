@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: travstack_ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: blue-app
+            port:
+              number: 8080
+        path: /blue
+        pathType: Exact
+      - backend:
+          service:
+            name: green-app
+            port:
+              number: 8081
+        path: /green
+        pathType: Exact
